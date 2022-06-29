@@ -4,6 +4,7 @@ import Personal from './components/Personal';
 import Education from './components/Education';
 import Experience from './components/Experience';
 
+
 class App extends React.Component {
   constructor() {
     super();
@@ -16,7 +17,7 @@ class App extends React.Component {
         startDate: '',
         endDate: '',
         current: false,
-        id: uniqid()
+        id: uniqid(),
       },
 
       edu: {
@@ -29,22 +30,39 @@ class App extends React.Component {
         id: uniqid(),
       },
 
-      allJobs: [],
+      allJobs: [{
+        company: 'ACME Industries',
+        title: 'Software Engineer',
+        duties: 'Engineer software',
+        startDate: '2021-03-17',
+        endDate: '',
+        current: true,
+        id: uniqid(),
+      },],
       allEdu: []
     }
   }
 
-  handleInputChange = (e) => {
-    const value = e.target.value;
+  handleInputChange = (e, index) => {
     const name = e.target.name;
+    const value = e.target.value;
+    const key = e.target.key;
+    const updateAllJobs = [...this.state.allJobs];
+    updateAllJobs[index][name] = value;
 
     this.setState({
-      job: {
-        [name]: value,
-        id: this.state.job.id,
-      },
+      allJobs: updateAllJobs,
     });
   }
+
+  // this.setState({
+  //   shareholders: this.state.shareholders.map((s, _idx) => {
+  //     if (_idx !== idx) return s;
+  //     // this is gonna create a new object, that has the fields from
+  //     // `s`, and `name` set to `newName`
+  //     return { ...s, name: newName };
+  //   }),
+  // });
   
   handleAddWork = () => {
     this.setState({
@@ -79,6 +97,7 @@ class App extends React.Component {
   render() {
     return(
       <div>
+        <h2>Personal Information</h2>
         <Personal />
         <h2>Work Experience</h2>
         <Experience allJobs={this.state.allJobs} handleChange={this.handleInputChange}/>
