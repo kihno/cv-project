@@ -43,10 +43,10 @@ class App extends React.Component {
     }
   }
 
-  handleInputChange = (e, index) => {
+  handleJobInput = (e, index) => {
     const name = e.target.name;
     const value = e.target.value;
-    const key = e.target.key;
+
     const updateAllJobs = [...this.state.allJobs];
     updateAllJobs[index][name] = value;
 
@@ -55,14 +55,18 @@ class App extends React.Component {
     });
   }
 
-  // this.setState({
-  //   shareholders: this.state.shareholders.map((s, _idx) => {
-  //     if (_idx !== idx) return s;
-  //     // this is gonna create a new object, that has the fields from
-  //     // `s`, and `name` set to `newName`
-  //     return { ...s, name: newName };
-  //   }),
-  // });
+  handleSchoolInput = (e, index) => {
+    const name = e.target.name;
+    const value = e.target.value;
+
+    const updateAllEdu = [...this.state.allEdu];
+    updateAllEdu[index][name] = value;
+
+    this.setState({
+      allEdu: updateAllEdu,
+    });
+    console.log(this.state.allEdu);
+  }
   
   handleAddWork = () => {
     this.setState({
@@ -74,7 +78,7 @@ class App extends React.Component {
         startDate: '',
         endDate: '',
         current: false,
-        id: uniqid()
+        id: uniqid(),
       },
     });
   }
@@ -100,10 +104,10 @@ class App extends React.Component {
         <h2>Personal Information</h2>
         <Personal />
         <h2>Work Experience</h2>
-        <Experience allJobs={this.state.allJobs} handleChange={this.handleInputChange}/>
+        <Experience allJobs={this.state.allJobs} handleChange={this.handleJobInput} />
         <button id="addWork" onClick={this.handleAddWork}>Add Work</button>
         <h2>Education</h2>
-        <Education allEdu={this.state.allEdu} />
+        <Education allEdu={this.state.allEdu} handleChange={this.handleSchoolInput} />
         <button id="addSchool" onClick={this.handleAddSchool}>Add Education</button>
       </div>
     );
