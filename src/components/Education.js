@@ -7,7 +7,7 @@ class Education extends React.Component {
     }
 
     render() {
-        const { allEdu, handleChange, handleRemoveEdu } = this.props;
+        const { allEdu, handleChange, handleRemove } = this.props;
         return (
             <div>
                 {allEdu.map((edu) => {
@@ -31,7 +31,7 @@ class Education extends React.Component {
                                 <label htmlFor="endDate">End Date:</label>
                                 <input type="date" className="endDate"name ="endDate" value={edu.endDate} onChange={(e) => handleChange(e, index)} />
                                 
-                                <Button onClick={() => handleRemoveEdu(index)} index={index} />
+                                <Button handleRemove={handleRemove} id={edu.id} index={index} />
                             </form>
                 })}
             </div>

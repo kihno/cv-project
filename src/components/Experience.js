@@ -7,7 +7,7 @@ class Experience extends React.Component {
     }
 
     render() {
-        const { allJobs, handleChange, handleCheck, handleRemoveJob } = this.props;
+        const { allJobs, handleChange, handleCheck, handleRemove } = this.props;
         return (
             <div>
                 {allJobs.map((job) => {
@@ -32,7 +32,7 @@ class Experience extends React.Component {
                                     <input type="checkbox" className="current" name="current" value={job.current} checked={job.current} onChange={(e) => handleCheck(e, index)} />
                                 </label>
 
-                                <Button handleRemoveJob={handleRemoveJob} job={job} index={index} id={job.id}/>
+                                <Button handleRemove={handleRemove} id={job.id} index={index} />
                             </form>
                     
                 })}

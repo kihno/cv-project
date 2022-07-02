@@ -4,6 +4,7 @@ import Personal from './components/Personal';
 import Education from './components/Education';
 import Experience from './components/Experience';
 import Resume from './components/Resume';
+import { isFirstDayOfMonth } from 'date-fns';
 
 
 class App extends React.Component {
@@ -141,21 +142,13 @@ class App extends React.Component {
     }
   }
 
-  handleRemoveJob = (id) => {
-    const newAllJobs = [...this.state.allJobs];
-    newAllJobs.filter(job => job.id !== id);
+  handleRemove = (id) => {
+    const newAllJobs = [...this.state.allJobs].filter(job => job.id !== id);
+    const newAllEdu = [...this.state.allEdu].filter(edu => edu.id !== id);
 
     this.setState({
-      allJobs: newAllJobs
-    });
-  }
-
-  handleRemoveEdu = (index) => {
-    const newAllEdu = [...this.state.allEdu]
-    newAllEdu.splice(index, 1);
-
-    this.setState({
-      allEdu: newAllEdu
+      allJobs: newAllJobs,
+      allEdu: newAllEdu,
     });
   }
 
@@ -166,10 +159,10 @@ class App extends React.Component {
           <h2>Personal Information</h2>
           <Personal className="inputContainer" person={this.state.person} handleChange={this.handlePersonInput} />
           <h2>Work Experience</h2>
-          <Experience className="inputContainer" allJobs={this.state.allJobs} handleChange={this.handleJobInput} handleCheck={this.handleCheck} handleRemove={this.handleRemoveJob}/>
+          <Experience className="inputContainer" allJobs={this.state.allJobs} handleChange={this.handleJobInput} handleCheck={this.handleCheck} handleRemove={this.handleRemove}/>
           <button id="addWork" onClick={this.handleAddWork}>Add Work</button>
           <h2>Education</h2>
-          <Education className="inputContainer" allEdu={this.state.allEdu} handleChange={this.handleSchoolInput} />
+          <Education className="inputContainer" allEdu={this.state.allEdu} handleChange={this.handleSchoolInput} handleRemove={this.handleRemove} />
           <button id="addSchool" onClick={this.handleAddSchool}>Add Education</button>
         </div>
         <div id="resumeContainer">

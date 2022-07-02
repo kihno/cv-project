@@ -6,10 +6,11 @@ class Button extends React.Component {
     }
 
     renderButton = (index, id) => {
-        const { handleRemoveJob } = this.props;
+        const { handleRemove } = this.props;
 
+        
         if (index > 0) {
-            return <button type="button" onClick={() => handleRemoveJob(id)}>X</button>
+            return <button type="button" onClick={() => handleRemove(id)} >X</button>
         } else {
             return
         }
