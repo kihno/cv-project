@@ -9,15 +9,18 @@ class Personal extends React.Component {
         const { person, handleChange } = this.props;
         return (
             <form>
-                <label htmlFor="name">Name:
-                    <input type="text" name="name" id="name" value={person.name} onChange={handleChange} />
-                </label>
-                <label htmlFor="email">Email:
-                    <input type="email" name="email" id="email" value={person.email} onChange={handleChange} />
-                </label>
-                <label htmlFor="phone">Phone:
-                    <input type="phone" name="phone" id="phone" value={person.phone} onChange={handleChange} />
-                </label>
+                <label htmlFor="name">Name:</label>
+                <input type="text" name="name" id="nameInput" value={person.name} onChange={handleChange} />
+
+                <label htmlFor="location">Location:</label>
+                <input type="text" name="location" id="locationInput" value={person.location} onChange={handleChange} />
+                
+                <label htmlFor="email">Email:</label>
+                <input type="email" name="email" id="emailInput" value={person.email} onChange={handleChange} />
+                
+                <label htmlFor="phone">Phone:</label>
+                <input type="phone" name="phone" id="phoneInput" value={person.phone} onChange={handleChange} />
+                
             </form>
         )
     }

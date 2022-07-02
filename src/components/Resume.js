@@ -12,6 +12,7 @@ class Resume extends React.Component {
             <div id="resume">
                 <div id="person">
                     <div id="name">{person.name}</div>
+                    <div id="location">{person.location}</div>
                     <div id="email">{person.email}</div>
                     <div id="phone">{person.phone}</div>
                 </div>
@@ -29,7 +30,7 @@ class Resume extends React.Component {
                     {allEdu.map((edu) => {
                         return <div className="school" key={edu.id}>
                                     <div className="schoolName">{edu.school}</div>
-                                    <div className="schoolCcity">{edu.city}</div>
+                                    <div className="schoolCity">{edu.city}</div>
                                     <div className="schoolDegree">{edu.degree}</div>
                                     <div className="schoolStudy">{edu.study}</div>
                                     <Date startDate={edu.startDate} endDate={edu.endDate} />

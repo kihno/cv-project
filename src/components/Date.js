@@ -1,4 +1,5 @@
 import React from 'react';
+import{ DateTime } from 'luxon';
 
 class Date extends React.Component {
     constructor(props) {
@@ -7,14 +8,17 @@ class Date extends React.Component {
 
     renderDate = () => {
         const { startDate, endDate, current } = this.props;
+        
+        const formatStart = DateTime.fromISO(startDate).toFormat('LLL yyyy');
+        const formatEnd = DateTime.fromISO(endDate).toFormat('LLL yyyy');
 
         if (current === true) {
             return (
-                <div className="dates">{startDate + " - current"}</div>
+                <div className="dates">{formatStart + " - Present"}</div>
             )
         } else {
             return (
-                <div className="dates">{startDate + ' - ' + endDate}</div>
+                <div className="dates">{formatStart + ' - ' + formatEnd}</div>
             )
         }
     }

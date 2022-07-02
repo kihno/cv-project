@@ -13,6 +13,7 @@ class App extends React.Component {
     this.state = {
       person: {
         name: 'John Smith',
+        location: 'San Francisco, CA',
         email: 'jsmith@email.com',
         phone: '323-555-1234',
       },
@@ -138,7 +139,24 @@ class App extends React.Component {
         allJobs: updateAllJobs,
       });
     }
+  }
 
+  handleRemoveJob = (id) => {
+    const newAllJobs = [...this.state.allJobs];
+    newAllJobs.filter(job => job.id !== id);
+
+    this.setState({
+      allJobs: newAllJobs
+    });
+  }
+
+  handleRemoveEdu = (index) => {
+    const newAllEdu = [...this.state.allEdu]
+    newAllEdu.splice(index, 1);
+
+    this.setState({
+      allEdu: newAllEdu
+    });
   }
 
   render() {
@@ -146,12 +164,12 @@ class App extends React.Component {
       <div id="container">
         <div id="formContainer">
           <h2>Personal Information</h2>
-          <Personal person={this.state.person} handleChange={this.handlePersonInput} />
+          <Personal className="inputContainer" person={this.state.person} handleChange={this.handlePersonInput} />
           <h2>Work Experience</h2>
-          <Experience allJobs={this.state.allJobs} handleChange={this.handleJobInput} handleCheck={this.handleCheck}/>
+          <Experience className="inputContainer" allJobs={this.state.allJobs} handleChange={this.handleJobInput} handleCheck={this.handleCheck} handleRemove={this.handleRemoveJob}/>
           <button id="addWork" onClick={this.handleAddWork}>Add Work</button>
           <h2>Education</h2>
-          <Education allEdu={this.state.allEdu} handleChange={this.handleSchoolInput} />
+          <Education className="inputContainer" allEdu={this.state.allEdu} handleChange={this.handleSchoolInput} />
           <button id="addSchool" onClick={this.handleAddSchool}>Add Education</button>
         </div>
         <div id="resumeContainer">
