@@ -14,18 +14,20 @@ class Date extends React.Component {
 
         if (current === true) {
             return (
-                <div className="dates">{formatStart + " - Present"}</div>
+                <div>{formatStart + " - Present"}</div>
             )
         } else {
             return (
-                <div className="dates">{formatStart + ' - ' + formatEnd}</div>
+                <div>{formatStart + ' - ' + formatEnd}</div>
             )
         }
     }
 
     render() {
+        const { name } = this.props;
+
         return(
-            <div>{this.renderDate()}</div>
+            <div className={name}>{this.renderDate()}</div>
         )
     }
 }

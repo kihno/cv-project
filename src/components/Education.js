@@ -16,10 +16,7 @@ class Education extends React.Component {
                     return <form key={edu.id}>
                                 <label htmlFor="school">School:</label>
                                 <input type="text" className="school" name="school" value={edu.school} onChange={(e) => handleChange(e, index)} />
-                                
-                                <label htmlFor="city">City:</label>
-                                <input type="text" className="city" name="city" value={edu.city} onChange={(e) => handleChange(e, index)} />
-                                
+            
                                 <label htmlFor="degree">Degree:</label>
                                 <input type="text" className="degree" name="degree" value={edu.degree} onChange={(e) => handleChange(e, index)} />
                                 

@@ -19,10 +19,6 @@ h2 {
   margin-bottom: 10px;
 }
 
-button {
-  margin-top: 10px;
-}
-
 form {
   display: grid;
   grid-template-columns: 1fr 2fr;
@@ -43,6 +39,10 @@ textarea {
 #resumeContainer {
   height: 11in;
   width: 8.5in;
+  border: 1px solid black;
+}
+
+#resumeBody {
   padding: 0.5in;
 }
 
@@ -71,4 +71,42 @@ textarea {
 
 #phone {
   grid-area: 2 / 3 / 3 / 4;
+}
+
+.job {
+  display: grid;
+  grid: 1rem 1rem 1fr / 1fr 1fr;
+}
+
+.jobTitle {
+  font-weight: bold;
+}
+
+.jobDate {
+  justify-self: end;
+}
+
+.jobCompany {
+  
+}
+
+.jobDuties {
+  grid-area: 3 / 1 / 4 / 3;
+}
+
+.duty:before {
+  content: "• ";
+}
+
+.schoolContainer {
+  display: flex;
+}
+
+.schoolName {
+  padding-right: 5px;
+  border-right: 1px solid black;
+}
+
+.schoolDate {
+  padding-left: 5px;
 }

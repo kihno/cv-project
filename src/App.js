@@ -39,7 +39,7 @@ class App extends React.Component {
         id: uniqid(),
       },
 
-      skills: '',
+      skills: 'HTML, CSS, Javascript',
 
       allJobs: [{
         company: 'ACME Industries',

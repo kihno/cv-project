@@ -18,10 +18,10 @@ class Experience extends React.Component {
                                 <input type="text" className="company" name="company" value={job.company} onChange={(e) => handleChange(e, index)} />
                                 
                                 <label htmlFor="position">Title:</label>
-                                 <input type="text" className="title" name="title" value={job.title} onChange={(e) => handleChange(e, index)} />
+                                <input type="text" className="title" name="title" value={job.title} onChange={(e) => handleChange(e, index)} />
                                 
                                 <label htmlFor="duties">Duties:</label>
-                                <input type="text" className="duties" name="duties" value={job.duties} onChange={(e) => handleChange(e, index)} />
+                                <textarea className="duties" name="duties" value={job.duties} onChange={(e) => handleChange(e, index)}></textarea>
                                 
                                 <label htmlFor="startDate">Start Date:</label>
                                 <input type="date" className="startDate" name="startDate" value={job.startDate} onChange={(e) => handleChange(e, index)} />
