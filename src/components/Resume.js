@@ -7,7 +7,7 @@ class Resume extends React.Component {
     }
     
     render() {
-        const { person, allJobs, allEdu } = this.props.data;
+        const { person, allJobs, allEdu, skills } = this.props.data;
         return(
             <div id="resume">
                 <div id="person">
@@ -36,6 +36,9 @@ class Resume extends React.Component {
                                     <Date startDate={edu.startDate} endDate={edu.endDate} />
                                 </div>
                     })}
+                </div>
+                <div id="skills">
+                    <div>{skills}</div>
                 </div>
             </div>
         )

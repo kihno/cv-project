@@ -10,6 +10,7 @@ class Education extends React.Component {
         const { allEdu, handleChange, handleRemove } = this.props;
         return (
             <div>
+                <h2>Education</h2>
                 {allEdu.map((edu) => {
                     const index = allEdu.indexOf(edu);
                     return <form key={edu.id}>

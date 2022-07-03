@@ -30,6 +30,10 @@ form {
   margin-bottom: 20px;
 }
 
+textarea {
+  width: 100%;
+}
+
 .remove {
   margin: 0;
   justify-self: end;

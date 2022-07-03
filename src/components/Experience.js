@@ -10,6 +10,7 @@ class Experience extends React.Component {
         const { allJobs, handleChange, handleCheck, handleRemove } = this.props;
         return (
             <div>
+                <h2>Work Experience</h2>
                 {allJobs.map((job) => {
                     const index = allJobs.indexOf(job);
                     return <form key={job.id}>

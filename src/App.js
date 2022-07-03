@@ -3,8 +3,8 @@ import uniqid from 'uniqid';
 import Personal from './components/Personal';
 import Education from './components/Education';
 import Experience from './components/Experience';
+import Skills from './components/Skills';
 import Resume from './components/Resume';
-import { isFirstDayOfMonth } from 'date-fns';
 
 
 class App extends React.Component {
@@ -38,6 +38,8 @@ class App extends React.Component {
         endDate: '',
         id: uniqid(),
       },
+
+      skills: '',
 
       allJobs: [{
         company: 'ACME Industries',
@@ -94,6 +96,14 @@ class App extends React.Component {
       allEdu: updateAllEdu,
     });
     console.log(this.state.allEdu);
+  }
+
+  handleSkillsInput = (e) => {
+    const value = e.target.value;
+
+    this.setState({
+      skills: value,
+    })
   }
   
   handleAddWork = () => {
@@ -156,14 +166,12 @@ class App extends React.Component {
     return(
       <div id="container">
         <div id="formContainer">
-          <h2>Personal Information</h2>
           <Personal className="inputContainer" person={this.state.person} handleChange={this.handlePersonInput} />
-          <h2>Work Experience</h2>
           <Experience className="inputContainer" allJobs={this.state.allJobs} handleChange={this.handleJobInput} handleCheck={this.handleCheck} handleRemove={this.handleRemove}/>
           <button id="addWork" onClick={this.handleAddWork}>Add Work</button>
-          <h2>Education</h2>
           <Education className="inputContainer" allEdu={this.state.allEdu} handleChange={this.handleSchoolInput} handleRemove={this.handleRemove} />
           <button id="addSchool" onClick={this.handleAddSchool}>Add Education</button>
+          <Skills className="inputContainer" skills={this.state.skills} handleChange={this.handleSkillsInput}/>
         </div>
         <div id="resumeContainer">
           <Resume data={this.state} />
