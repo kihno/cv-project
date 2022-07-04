@@ -12,11 +12,12 @@ class App extends React.Component {
     super();
 
     this.state = {
+      display: 'hidden',
       person: {
-        name: 'John Smith',
-        location: 'San Francisco, CA',
-        email: 'jsmith@email.com',
-        phone: '323-555-1234',
+        name: '',
+        location: '',
+        email: '',
+        phone: '',
       },
 
       job: {
@@ -39,24 +40,24 @@ class App extends React.Component {
         id: uniqid(),
       },
 
-      skills: 'HTML, CSS, Javascript',
+      skills: '',
 
       allJobs: [{
-        company: 'ACME Industries',
-        title: 'Software Engineer',
-        duties: 'Engineer software',
-        startDate: '2021-03-17',
+        company: '',
+        title: '',
+        duties: '',
+        startDate: '',
         endDate: '',
         current: true,
         id: uniqid(),
       },],
       allEdu: [{
-        school: 'Stanford University',
-        city: 'Standford, CA',
-        degree: 'Bachelor of Science',
-        study: 'Computer Science',
-        startDate: '2006-08-29',
-        endDate: '2010-05-21',
+        school: '',
+        city: '',
+        degree: '',
+        study: '',
+        startDate: '',
+        endDate: '',
         id: uniqid(),
       }]
     }
@@ -162,18 +163,90 @@ class App extends React.Component {
     });
   }
 
+  renderResume = () => {
+    const newDisplay = 'block';
+
+    this.setState({
+      display: newDisplay,
+    })
+  }
+
+  renderSample = () => {
+    const samplePerson = {
+      name: 'Johnny Mnemonic',
+      location: 'Los Angeles, CA',
+      email: 'jmnemonic@email.com',
+      phone: '323-555-1234',
+    };
+
+    const sampleSkills = 'HTML, CSS, Javascript, Node.js, React, Web Development, Software Engineering';
+
+    const sampleJobs = [{
+        company: 'Maas-Neotek',
+        title: 'Senior Software Engineer',
+        duties: 'Lorem ipsum sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae nunc sed velit dignissim sodales ut eu sem integer. Purus in massa tempor nec feugiat nisl pretium fusce. Quam quisque id diam vel quam elementum pulvinar etiam. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit.',
+        startDate: '2018-03-17',
+        endDate: '',
+        current: true,
+        id: uniqid(),
+      },
+      {
+        company: 'Maas-Neotek',
+        title: 'Junior Software Engineer',
+        duties: 'Lorem ipsum sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae nunc sed velit dignissim sodales ut eu sem integer. Purus in massa tempor nec feugiat nisl pretium fusce. Quam quisque id diam vel quam elementum pulvinar etiam. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit.',
+        startDate: '2010-08-17',
+        endDate: '2018-03-16',
+        current: false,
+        id: uniqid(),
+      },
+      {
+        company: 'Hosaka',
+        title: 'Software Engineer Intern',
+        duties: 'Lorem ipsum sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Vitae nunc sed velit dignissim sodales ut eu sem integer. Purus in massa tempor nec feugiat nisl pretium fusce. Quam quisque id diam vel quam elementum pulvinar etiam. Posuere lorem ipsum dolor sit amet consectetur adipiscing elit.',
+        startDate: '2009-01-17',
+        endDate: '2010-08-16',
+        current: false,
+        id: uniqid(),
+      },];
+
+    const sampleEdu = [{
+        school: 'Stanford University',
+        city: 'Standford, CA',
+        degree: 'Bachelor of Science',
+        study: 'Computer Science',
+        startDate: '2006-08-29',
+        endDate: '2010-05-21',
+        id: uniqid(),
+      }];
+  
+    this.renderResume();
+
+    this.setState({
+      person: samplePerson,
+      skills: sampleSkills,
+      allJobs: sampleJobs,
+      allEdu: sampleEdu,
+    });
+  }
+
   render() {
+    const { display } = this.state;
+
     return(
       <div id="container">
         <div id="formContainer">
-          <Personal className="inputContainer" person={this.state.person} handleChange={this.handlePersonInput} />
-          <Experience className="inputContainer" allJobs={this.state.allJobs} handleChange={this.handleJobInput} handleCheck={this.handleCheck} handleRemove={this.handleRemove}/>
-          <button id="addWork" onClick={this.handleAddWork}>Add Work</button>
-          <Education className="inputContainer" allEdu={this.state.allEdu} handleChange={this.handleSchoolInput} handleRemove={this.handleRemove} />
-          <button id="addSchool" onClick={this.handleAddSchool}>Add Education</button>
-          <Skills className="inputContainer" skills={this.state.skills} handleChange={this.handleSkillsInput}/>
+          <div id="allInputs">
+            <button onClick={this.renderSample} id="sampleBtn">Sample Resume</button>
+            <Personal className="inputContainer" person={this.state.person} handleChange={this.handlePersonInput} />
+            <Experience className="inputContainer" allJobs={this.state.allJobs} handleChange={this.handleJobInput} handleCheck={this.handleCheck} handleRemove={this.handleRemove}/>
+            <button id="addWork" onClick={this.handleAddWork}>Add Work</button>
+            <Education className="inputContainer" allEdu={this.state.allEdu} handleChange={this.handleSchoolInput} handleRemove={this.handleRemove} />
+            <button id="addSchool" onClick={this.handleAddSchool}>Add Education</button>
+            <Skills className="inputContainer" skills={this.state.skills} handleChange={this.handleSkillsInput}/>
+            <button onClick={this.renderResume} id="resumeBtn">Create Resume</button>
+          </div>
         </div>
-        <div id="resumeContainer">
+        <div id="resumeContainer" className={display}>
           <Resume data={this.state} />
         </div>
       </div>

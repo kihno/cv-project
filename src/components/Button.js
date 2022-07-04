@@ -10,7 +10,7 @@ class Button extends React.Component {
 
         
         if (index > 0) {
-            return <button type="button" onClick={() => handleRemove(id)} >X</button>
+            return <button type="button" className="removeBtn" onClick={() => handleRemove(id)} >X</button>
         } else {
             return
         }
