@@ -9,8 +9,8 @@ class Date extends React.Component {
     renderDate = () => {
         const { startDate, endDate, current } = this.props;
         
-        const formatStart = DateTime.fromISO(startDate).toFormat('LLL yyyy');
-        const formatEnd = DateTime.fromISO(endDate).toFormat('LLL yyyy');
+        const formatStart = DateTime.fromISO(startDate).toFormat('LLL yyyy') || '';
+        const formatEnd = DateTime.fromISO(endDate).toFormat('LLL yyyy') || '';
 
         if (current === true) {
             return (

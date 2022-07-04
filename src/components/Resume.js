@@ -1,5 +1,8 @@
 import React from 'react';
 import Date from './Date';
+import location from '../images/location.png';
+import email from '../images/email.png';
+import phone from '../images/phone.png';
 
 class Resume extends React.Component {
     constructor(props) {
@@ -14,31 +17,42 @@ class Resume extends React.Component {
                 <div id="resumeHeader">
                     <div id="person">
                         <div id="name">{person.name}</div>
-                        <div id="location">{person.location}</div>
-                        <div id="email">{person.email}</div>
-                        <div id="phone">{person.phone}</div>
+                        
+                        <div id="location" className="subhead">
+                            <img src={location} alt="location" className="icon"></img>
+                            <span>{person.location}</span>
+                        </div>
+                        <div id="email" className="subhead">
+                            <img src={email} alt="email" className="icon"></img>
+                            <span>{person.email}</span>
+                        </div>
+                        <div id="phone" className="subhead">
+                            <img src={phone} alt="phone" className="icon"></img>
+                            <span>{person.phone}</span>
+                        </div>
                     </div>
                 </div>
                 <div id="resumeBody">
                     <div id="experience">
-                        <h3>Work Experience</h3>
+                        <h2>Work Experience</h2>
                         {allJobs.map((job) =>{
                             const dutyList = job.duties.split('. ');
 
                             return <div className="job" key={job.id}>
-                                        <div className="jobCompany">{job.company}</div>
-                                        <Date name="jobDate" startDate={job.startDate} endDate={job.endDate} current={job.current} />
                                         <div className="jobTitle">{job.title}</div>
+                                        <Date name="jobDate" startDate={job.startDate} endDate={job.endDate} current={job.current} />
+                                        <div className="jobCompany">{job.company}</div>
                                         <div className="jobDuties">
                                             {dutyList.map((duty) => {
-                                                return <div className="duty">{duty}</div>
+                                                const index = dutyList.indexOf(duty);
+                                                return <div className="duty" key={index}>{duty}</div>
                                             })}
                                         </div>
                                     </div>
                         })}
                     </div>
                     <div id="education">
-                        <h3>Education</h3>
+                        <h2>Education</h2>
                         {allEdu.map((edu) => {
                             return <div className="school" key={edu.id}>
                                         <div className="schoolDegree">{edu.degree}</div>
@@ -51,7 +65,7 @@ class Resume extends React.Component {
                         })}
                     </div>
                     <div id="skills">
-                        <h3>Skills</h3>
+                        <h2>Skills</h2>
                         <div>{skills}</div>
                     </div>
                 </div>

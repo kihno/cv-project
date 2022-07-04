@@ -13,12 +13,12 @@ class Experience extends React.Component {
                 <h2>Work Experience</h2>
                 {allJobs.map((job) => {
                     const index = allJobs.indexOf(job);
-                    return <form key={job.id}>
-                                <label htmlFor="company">Company:</label>
-                                <input type="text" className="company" name="company" value={job.company} onChange={(e) => handleChange(e, index)} />
-                                
+                    return <form key={job.id} className="jobForm">
                                 <label htmlFor="position">Title:</label>
                                 <input type="text" className="title" name="title" value={job.title} onChange={(e) => handleChange(e, index)} />
+                                
+                                <label htmlFor="company">Company:</label>
+                                <input type="text" className="company" name="company" value={job.company} onChange={(e) => handleChange(e, index)} />
                                 
                                 <label htmlFor="duties">Duties:</label>
                                 <textarea className="duties" name="duties" value={job.duties} onChange={(e) => handleChange(e, index)}></textarea>

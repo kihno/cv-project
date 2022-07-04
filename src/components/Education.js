@@ -13,9 +13,9 @@ class Education extends React.Component {
                 <h2>Education</h2>
                 {allEdu.map((edu) => {
                     const index = allEdu.indexOf(edu);
-                    return <form key={edu.id}>
+                    return <form key={edu.id} className="schoolForm">
                                 <label htmlFor="school">School:</label>
-                                <input type="text" className="school" name="school" value={edu.school} onChange={(e) => handleChange(e, index)} />
+                                <input type="text" className="schoolNameInput" name="school" value={edu.school} onChange={(e) => handleChange(e, index)} />
             
                                 <label htmlFor="degree">Degree:</label>
                                 <input type="text" className="degree" name="degree" value={edu.degree} onChange={(e) => handleChange(e, index)} />
