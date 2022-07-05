@@ -6,6 +6,7 @@ body {
 
 #container {
   display: flex;
+  justify-content: center;
   gap: 100px;
   height: 100%;
   width: 100%;
@@ -14,7 +15,7 @@ body {
 #formContainer {
   padding: 50px;
   height: 100%;
-
+  width: 30%;
   background-color: lightgrey;
   display: flex;
   flex-direction: column;

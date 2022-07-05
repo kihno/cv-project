@@ -164,10 +164,10 @@ class App extends React.Component {
   }
 
   renderResume = () => {
-    const newDisplay = 'block';
+    const renderResume = true;
 
     this.setState({
-      display: newDisplay,
+      resume: renderResume,
     })
   }
 
@@ -246,9 +246,11 @@ class App extends React.Component {
             <button onClick={this.renderResume} id="resumeBtn">Create Resume</button>
           </div>
         </div>
-        <div id="resumeContainer" className={display}>
-          <Resume data={this.state} />
-        </div>
+          {this.state.resume ? 
+            <div id="resumeContainer" >
+              {this.state.resume ? <Resume data={this.state} /> : null}
+            </div> 
+          : null}
       </div>
     );
   }
