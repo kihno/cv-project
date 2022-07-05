@@ -1,13 +1,9 @@
 import React from 'react';
 
-class Button extends React.Component {
-    constructor(props) {
-        super(props)
-    }
-
-    renderButton = (index, id) => {
-        const { handleRemove } = this.props;
-
+const Button = (props) => {
+   
+    const renderButton = (index, id) => {
+        const { handleRemove } = props;
         
         if (index > 0) {
             return <button type="button" className="removeBtn" onClick={() => handleRemove(id)} >X</button>
@@ -16,13 +12,10 @@ class Button extends React.Component {
         }
     }
 
-    render() {
-        const { index, id } = this.props;
 
-        return (
-            <div className="remove">{this.renderButton(index, id)}</div>
-        )
-    }
+    return (
+        <div className="remove">{renderButton(props.index, props.id)}</div>
+    )
 }
 
 export default Button;

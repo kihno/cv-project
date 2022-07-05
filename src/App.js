@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import Personal from './components/Personal';
 import Education from './components/Education';
@@ -7,109 +7,107 @@ import Skills from './components/Skills';
 import Resume from './components/Resume';
 
 
-class App extends React.Component {
-  constructor() {
-    super();
+const App = () => {
+  const [state, setState] = useState({
+    showResume: false,
 
-    this.state = {
-      display: 'hidden',
-      person: {
-        name: '',
-        location: '',
-        email: '',
-        phone: '',
-      },
+    person: {
+      name: '',
+      location: '',
+      email: '',
+      phone: '',
+    },
 
-      job: {
-        company: '',
-        title: '',
-        duties: '',
-        startDate: '',
-        endDate: '',
-        current: false,
-        id: uniqid(),
-      },
+    job: {
+      company: '',
+      title: '',
+      duties: '',
+      startDate: '',
+      endDate: '',
+      current: false,
+      id: uniqid(),
+    },
 
-      edu: {
-        school: '',
-        city: '',
-        degree: '',
-        study: '',
-        startDate: '',
-        endDate: '',
-        id: uniqid(),
-      },
+    edu: {
+      school: '',
+      city: '',
+      degree: '',
+      study: '',
+      startDate: '',
+      endDate: '',
+      id: uniqid(),
+    },
 
-      skills: '',
+    skills: '',
 
-      allJobs: [{
-        company: '',
-        title: '',
-        duties: '',
-        startDate: '',
-        endDate: '',
-        current: true,
-        id: uniqid(),
-      },],
-      allEdu: [{
-        school: '',
-        city: '',
-        degree: '',
-        study: '',
-        startDate: '',
-        endDate: '',
-        id: uniqid(),
-      }]
-    }
+    allJobs: [{
+      company: '',
+      title: '',
+      duties: '',
+      startDate: '',
+      endDate: '',
+      current: true,
+      id: uniqid(),
+    },],
+    allEdu: [{
+      school: '',
+      city: '',
+      degree: '',
+      study: '',
+      startDate: '',
+      endDate: '',
+      id: uniqid(),
+    }]
+  });
+
+
+  const handlePersonInput = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    const newPerson = {...state.person}
+    newPerson[name] = value;
+
+    setState({...state,
+      person: newPerson,
+    });
   }
 
-  handlePersonInput = (e) => {
+  const handleJobInput = (e, index) => {
     const name = e.target.name;
     const value = e.target.value;
 
-    this.setState({
-      person: {
-        [name]: value,
-      }
-    })
-  }
-
-  handleJobInput = (e, index) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    const updateAllJobs = [...this.state.allJobs];
+    const updateAllJobs = [...state.allJobs];
     updateAllJobs[index][name] = value;
 
-    this.setState({
+    setState({...state,
       allJobs: updateAllJobs,
     });
   }
 
-  handleSchoolInput = (e, index) => {
+  const handleSchoolInput = (e, index) => {
     const name = e.target.name;
     const value = e.target.value;
 
-    const updateAllEdu = [...this.state.allEdu];
+    const updateAllEdu = [...state.allEdu];
     updateAllEdu[index][name] = value;
 
-    this.setState({
+    setState({...state,
       allEdu: updateAllEdu,
     });
-    console.log(this.state.allEdu);
+    console.log(state.allEdu);
   }
 
-  handleSkillsInput = (e) => {
+  const handleSkillsInput = (e) => {
     const value = e.target.value;
 
-    this.setState({
+    setState({...state,
       skills: value,
     })
   }
   
-  handleAddWork = () => {
-    this.setState({
-      allJobs: this.state.allJobs.concat(this.state.job),
+  const handleAddWork = () => {
+    setState({...state,
+      allJobs: state.allJobs.concat(state.job),
       job: {
         company: '',
         title: '',
@@ -122,9 +120,9 @@ class App extends React.Component {
     });
   }
 
-  handleAddSchool = () => {
-    this.setState({
-      allEdu: this.state.allEdu.concat(this.state.edu),
+  const handleAddSchool = () => {
+    setState({...state,
+      allEdu: state.allEdu.concat(state.edu),
       edu: {
         school: '',
         city: '',
@@ -137,41 +135,41 @@ class App extends React.Component {
     });
   }
 
-  handleCheck = (e, index) => {
+  const handleCheck = (e, index) => {
     const value = e.target.value;
     console.log(value);
 
     if (value === false) {
       return
     } else {
-      const updateAllJobs = [...this.state.allJobs];
+      const updateAllJobs = [...state.allJobs];
       updateAllJobs[index].endDate = 'current';
 
-      this.setState({
+      setState({...state,
         allJobs: updateAllJobs,
       });
     }
   }
 
-  handleRemove = (id) => {
-    const newAllJobs = [...this.state.allJobs].filter(job => job.id !== id);
-    const newAllEdu = [...this.state.allEdu].filter(edu => edu.id !== id);
+  const handleRemove = (id) => {
+    const newAllJobs = [...state.allJobs].filter(job => job.id !== id);
+    const newAllEdu = [...state.allEdu].filter(edu => edu.id !== id);
 
-    this.setState({
+    setState({...state,
       allJobs: newAllJobs,
       allEdu: newAllEdu,
     });
   }
 
-  renderResume = () => {
-    const newDisplay = 'block';
+  const renderResume = () => {
+    const yes = true;
 
-    this.setState({
-      display: newDisplay,
+    setState({...state,
+      showResume: yes,
     })
   }
 
-  renderSample = () => {
+  const renderSample = () => {
     const samplePerson = {
       name: 'Johnny Mnemonic',
       location: 'Los Angeles, CA',
@@ -218,10 +216,9 @@ class App extends React.Component {
         endDate: '2010-05-21',
         id: uniqid(),
       }];
-  
-    this.renderResume();
 
-    this.setState({
+    setState({...state,
+      showResume: true,
       person: samplePerson,
       skills: sampleSkills,
       allJobs: sampleJobs,
@@ -229,29 +226,29 @@ class App extends React.Component {
     });
   }
 
-  render() {
-    const { display } = this.state;
-
-    return(
-      <div id="container">
-        <div id="formContainer">
-          <div id="allInputs">
-            <button onClick={this.renderSample} id="sampleBtn">Sample Resume</button>
-            <Personal className="inputContainer" person={this.state.person} handleChange={this.handlePersonInput} />
-            <Experience className="inputContainer" allJobs={this.state.allJobs} handleChange={this.handleJobInput} handleCheck={this.handleCheck} handleRemove={this.handleRemove}/>
-            <button id="addWork" onClick={this.handleAddWork}>Add Work</button>
-            <Education className="inputContainer" allEdu={this.state.allEdu} handleChange={this.handleSchoolInput} handleRemove={this.handleRemove} />
-            <button id="addSchool" onClick={this.handleAddSchool}>Add Education</button>
-            <Skills className="inputContainer" skills={this.state.skills} handleChange={this.handleSkillsInput}/>
-            <button onClick={this.renderResume} id="resumeBtn">Create Resume</button>
-          </div>
-        </div>
-        <div id="resumeContainer" className={display}>
-          <Resume data={this.state} />
+  return (
+    <div id="container">
+      <div id="formContainer">
+        <div id="allInputs">
+          <button onClick={renderSample} id="sampleBtn">Sample Resume</button>
+          <Personal className="inputContainer" person={state.person} handleChange={handlePersonInput} />
+          <Experience className="inputContainer" allJobs={state.allJobs} handleChange={handleJobInput} handleCheck={handleCheck} handleRemove={handleRemove}/>
+          <button id="addWork" onClick={handleAddWork}>Add Work</button>
+          <Education className="inputContainer" allEdu={state.allEdu} handleChange={handleSchoolInput} handleRemove={handleRemove} />
+          <button id="addSchool" onClick={handleAddSchool}>Add Education</button>
+          <Skills className="inputContainer" skills={state.skills} handleChange={handleSkillsInput}/>
+          <button onClick={renderResume} id="resumeBtn">Create Resume</button>
         </div>
       </div>
-    );
-  }
+      {state.showResume ? 
+        <div id="resumeContainer">
+          <Resume data={state} />
+        </div>
+      : null}
+      
+    </div>
+  );
+
 }
 
 export default App;

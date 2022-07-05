@@ -1,13 +1,10 @@
 import React from 'react';
 import{ DateTime } from 'luxon';
 
-class Date extends React.Component {
-    constructor(props) {
-        super(props)
-    }
+const Date = (props) => {
 
-    renderDate = () => {
-        const { startDate, endDate, current } = this.props;
+    const renderDate = () => {
+        const { startDate, endDate, current } = props;
         
         const formatStart = DateTime.fromISO(startDate).toFormat('LLL yyyy') || '';
         const formatEnd = DateTime.fromISO(endDate).toFormat('LLL yyyy') || '';
@@ -23,13 +20,9 @@ class Date extends React.Component {
         }
     }
 
-    render() {
-        const { name } = this.props;
-
-        return(
-            <div className={name}>{this.renderDate()}</div>
-        )
-    }
+    return(
+        <div className={props.name}>{renderDate()}</div>
+    )
 }
 
 export default Date;
