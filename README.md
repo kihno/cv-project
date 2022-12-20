@@ -1,6 +1,6 @@
 # CV Builder
 
-![](images/cv-builder.png)
+![](src/images/cv-builder.png)
 
 https://kihno.github.io/cv-project/
 
